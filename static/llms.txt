@@ -1,0 +1,10 @@
+# Blueprint App
+
+> A Svelte app that works offline and does its CPU-heavy work in a Rust core compiled to WebAssembly, in a Web Worker.
+
+The app renders the Mandelbrot set twice, once with WebAssembly and once with JavaScript, and shows both timings.
+Everything runs in the browser; there is no server and no account. Source: https://github.com/your-org/blueprint-app
+
+## For agents
+
+- [Authentication: none](https://app.example.org/.well-known/auth.md)

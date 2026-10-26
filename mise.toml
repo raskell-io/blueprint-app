@@ -1,0 +1,20 @@
+# Node is pinned here; Rust is pinned in rust-toolchain.toml (with the wasm32 target), npm packages to exact versions.
+[tools]
+node = "24"
+
+[tasks.wasm]
+description = "Build crates/wasm into static/wasm/app.wasm, run wasm-opt if present, enforce the size budget"
+run = "bash scripts/build-wasm.sh"
+
+[tasks.test]
+description = "Test the Rust core natively; it has no wasm or JS in it, so cargo test is enough"
+run = ["cargo test -p app-core", "cargo clippy --workspace --all-targets -- -D warnings"]
+
+[tasks.build]
+description = "Build the WebAssembly module, then the static app into build/"
+depends = ["test"]
+run = "npm run build"
+
+[tasks.dev]
+description = "Serve the app with hot reload at http://127.0.0.1:5173"
+run = "npm run dev"
